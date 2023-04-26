@@ -3,15 +3,26 @@ import React, { createContext, useEffect, useState } from "react";
 const FypContext = createContext(null);
 
 const FypProvider = ({ children }) => {
-  const [login, setLogin] = useState({
-    username: "Test from context",
+  const [userDetails, setUserDetails] = useState({
+    username: "",
     password: "",
   });
+
+  const handleFormDataChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    2;
+    setUserDetails({
+      ...userDetails,
+      [name]: value,
+    });
+  };
 
   return (
     <FypContext.Provider
       value={{
-        login,
+        userDetails,
+        handleFormDataChange,
       }}
     >
       {children}
