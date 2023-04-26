@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+import { FypProvider } from "../context/context";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <FypProvider>
+      <Component {...pageProps} />
+    </FypProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
