@@ -29,6 +29,7 @@ export default function Form() {
           body: JSON.stringify(body),
         });
         const response = await registerRes.json();
+        window.location.href = "/login";
         console.log(response);
       } catch (error) {
         console.log(error);
