@@ -8,26 +8,24 @@ export default function Loginform() {
     userDetails,
     handleFormDataChange,
   } = useContext(FypContext);
-  useEffect(() => {
-    console.log(username);
-  }, [userDetails]);
-  async function sendLoginRequest(username, password) {
+
+  async function sendLoginRequest(e) {
+    e.preventDefault();
     const url = "https://delesender-production.up.railway.app/login";
     const data = { username: username, password: password };
+    // const body = { username: data.username, password: data.password };
 
+    console.log(JSON.stringify(data));
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       body: JSON.stringify(data),
     });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
     const responseBody = await response.json();
+    console.log(responseBody);
     return responseBody;
   }
   return (
@@ -48,7 +46,7 @@ export default function Loginform() {
               <form class="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
-                    for="email"
+                    htmlFor="email"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your email
@@ -66,7 +64,7 @@ export default function Loginform() {
                 </div>
                 <div>
                   <label
-                    for="password"
+                    htmlFor="password"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Password
@@ -78,6 +76,8 @@ export default function Loginform() {
                     placeholder="••••••••"
                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    value={password}
+                    onChange={handleFormDataChange}
                   />
                 </div>
                 <div class="flex items-center justify-between">
@@ -93,7 +93,7 @@ export default function Loginform() {
                     </div>
                     <div class="ml-3 text-sm">
                       <label
-                        for="remember"
+                        htmlFor="remember"
                         class="text-gray-500 dark:text-gray-300"
                       >
                         Remember me
@@ -109,7 +109,8 @@ export default function Loginform() {
                 </div>
                 <button
                   type="submit"
-                  class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  class="w-full bg-primary-600 bg-black text-white hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  onClick={sendLoginRequest}
                 >
                   Sign in
                 </button>

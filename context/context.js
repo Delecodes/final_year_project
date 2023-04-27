@@ -11,7 +11,6 @@ const FypProvider = ({ children }) => {
   const handleFormDataChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    2;
     setUserDetails({
       ...userDetails,
       [name]: value,
