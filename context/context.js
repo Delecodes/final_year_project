@@ -6,7 +6,18 @@ const FypProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
   });
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
+    setIsValid(regex.test(userDetails.password));
+  }, [userDetails.password]);
 
   const handleFormDataChange = (e) => {
     let name = e.target.name;
@@ -21,6 +32,8 @@ const FypProvider = ({ children }) => {
     <FypContext.Provider
       value={{
         userDetails,
+        isValid,
+        setIsValid,
         handleFormDataChange,
       }}
     >
