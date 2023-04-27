@@ -15,16 +15,21 @@ export default function Loginform() {
     const data = { username: username, password: password };
     // const body = { username: data.username, password: data.password };
 
+    const formData = new URLSearchParams();
+
+    formData.append("username", username);
+    formData.append("password", password);
+
     console.log(JSON.stringify(data));
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(data),
+      body: formData,
     });
 
-    const responseBody = await response.json();
+    const responseBody = await response.text();
     console.log(responseBody);
     return responseBody;
   }
