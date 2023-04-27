@@ -13,6 +13,7 @@ const FypProvider = ({ children }) => {
     phoneNumber: "",
   });
   const [isValid, setIsValid] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
@@ -33,6 +34,8 @@ const FypProvider = ({ children }) => {
       value={{
         userDetails,
         isValid,
+        accessToken,
+        setAccessToken,
         setIsValid,
         handleFormDataChange,
       }}

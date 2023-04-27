@@ -6,6 +6,7 @@ export default function Loginform() {
   const {
     userDetails: { username, password },
     userDetails,
+    setAccessToken,
     handleFormDataChange,
   } = useContext(FypContext);
 
@@ -30,6 +31,7 @@ export default function Loginform() {
     });
 
     const responseBody = await response.text();
+    setAccessToken(JSON.parse(responseBody)["access_token"]);
     console.log(responseBody);
     return responseBody;
   }
