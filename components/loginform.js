@@ -22,18 +22,22 @@ export default function Loginform() {
     formData.append("password", password);
 
     console.log(JSON.stringify(data));
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: formData,
-    });
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
+      });
 
-    const responseBody = await response.text();
-    setAccessToken(JSON.parse(responseBody)["access_token"]);
-    console.log(responseBody);
-    return responseBody;
+      const responseBody = await response.text();
+      setAccessToken(JSON.parse(responseBody)["access_token"]);
+      console.log(responseBody);
+      return responseBody;
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
