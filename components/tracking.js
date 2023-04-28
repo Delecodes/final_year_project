@@ -54,8 +54,8 @@ export default function Tracking({
             </div>
 
             {order_history &&
-              order_history.map((history) => {
-                return <TrackDetails {...history} />;
+              order_history.map((history, index) => {
+                return <TrackDetails key={index} {...history} />;
               })}
           </section>
         </div>
