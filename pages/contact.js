@@ -67,7 +67,7 @@ export default function Contact() {
                   <div className="flex gap-2 flex-col list-none">
                     <h6 className="font-bold">Email support</h6>
                     <li>
-                      We'll respond to your request as quickly as possible.
+                      {"We'll respond to your request as quickly as possible."}
                     </li>
                   </div>
 

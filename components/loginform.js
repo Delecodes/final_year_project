@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { FypContext } from "../context/context";
+import Image from "next/image";
 
 export default function Loginform() {
   const {
@@ -53,7 +54,7 @@ export default function Loginform() {
             href="#"
             class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
           >
-            <img class="w-44 h-16" src="sender.png" alt="logo" />
+            <Image class="w-44 h-16" src="sender.png" alt="logo" />
           </a>
           <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

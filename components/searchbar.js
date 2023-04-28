@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Link from "next/link";
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
