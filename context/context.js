@@ -14,6 +14,9 @@ const FypProvider = ({ children }) => {
   });
   const [isValid, setIsValid] = useState(false);
   const [accessToken, setAccessToken] = useState("");
+  const [baseUrl, setBaseUrl] = useState(
+    "https://delesender-production.up.railway.app/"
+  );
 
   useEffect(() => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{8,}$/;
@@ -35,6 +38,7 @@ const FypProvider = ({ children }) => {
         userDetails,
         isValid,
         accessToken,
+        baseUrl,
         setAccessToken,
         setIsValid,
         handleFormDataChange,
