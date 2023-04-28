@@ -39,7 +39,7 @@ export default function Loginform() {
         JSON.parse(responseBody)["access_token"]
       );
       console.log(responseBody);
-      // window.location.href = "/";
+      window.location.href = "/";
       return responseBody;
     } catch (error) {
       console.log(error);

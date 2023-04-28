@@ -8,6 +8,20 @@ function Searchbar() {
   const { baseUrl, accessToken } = useContext(FypContext);
   const [localAccessToken, setLocalAccessToken] = useState("");
   const [orderDetails, setOrderDetails] = useState([]);
+  const [tempOrderDetails, setTempOrderDetails] = useState([]);
+  const [searchString, setSearchString] = useState("");
+
+  useEffect(() => {
+    triggerSearch();
+  }, [searchString]);
+
+  const triggerSearch = () => {
+    setTempOrderDetails(
+      orderDetails.filter((order) =>
+        order.description.toLowerCase().match(searchString.toLowerCase())
+      )
+    );
+  };
 
   useEffect(() => {
     const storedState = localStorage.getItem("Access Token");
@@ -33,6 +47,7 @@ function Searchbar() {
 
       const ordersRes = await ordersReq.json();
       setOrderDetails(ordersRes);
+      setTempOrderDetails(ordersRes);
       console.log(ordersRes);
     } catch (error) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -85,6 +100,8 @@ function Searchbar() {
               class="bg-gray-50 border-b border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search"
               required
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
             />
           </div>
           <button
@@ -117,10 +134,17 @@ function Searchbar() {
           </p>
         </div>
       </div>
-      {orderDetails &&
-        orderDetails?.map((orders) => {
-          return <OrdersComponent {...orders} />;
-        })}
+      <button onClick={triggerSearch}>Filter</button>
+
+      {tempOrderDetails &&
+      Array.isArray(tempOrderDetails) &&
+      tempOrderDetails.length > 0 ? (
+        tempOrderDetails?.map((orders, index) => {
+          return <OrdersComponent key={index} {...orders} />;
+        })
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
